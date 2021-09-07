@@ -1,81 +1,24 @@
-polySphere -r 2.5 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
-move -r 0 0.859743 0 ;
-polySphere -r 2 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
-move -r 0 4.859743 0 ;
-polySphere -r 1.5 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
-move -r 0 7.859743 0 ;
-polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
-move -r 0 9.859743 0 ;
-polySphere -r .5 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
-move -r 0 11 0 ;
-select -r pSphere10 ;
-scale -r 1 0.280237 1 ;
-scale -r 3.352416 3.352416 3.352416 ;
-move -r 0 -1.970725 0 ;
-select -r pSphere9 ;
-select -r pSphere9 ;
-scale -r 1.47248 1.47248 1.47248 ;
-scale -r 1 0.516577 1 ;
-move -r 0 -0.403192 0 ;
-scale -r 0.859247 0.859247 0.859247 ;
-move -r 0 0.0582391 0 ;
-polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
-move -r 0 8.031395 0 ;
-move -r 0 0 1.115165 ;
-move -r 0 -0.107661 0 ;
-scale -r 1 1 2.474327 ;
-scale -r 0.311705 0.311705 0.311705 ;
-scale -r 1 1 1.701592 ;
-polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
-move -r 0 8.430346 0 ;
-move -r 0 0 0.991386 ;
-scale -r 0.393276 0.393276 0.393276 ;
-move -r -0.559237 0 0 ;
-move -r 0 -0.135235 0 ;
-select -r pSphere12 ;
-duplicate -rr;
-move -r 1.118965 0 0 ;
-polyCylinder -r 1 -h 2 -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
-move -r 0 5.658094 0 ;
-move -r 1.815209 0 0 ;
-scale -r 0.345849 0.345849 0.345849 ;
-scale -r 1 5.429214 1 ;
-scale -r 0.927009 0.927009 0.927009 ;
-rotate -r -os -fo 0 0 -65.03376 ;
-move -r 0.735619 0.614904 -0.313247 ;
-select -r pCylinder1 ;
-duplicate -rr;
-rotate -r -os -fo 0 0 122.144122 ;
-move -r -5.273956 0 0 ;
-select -cl  ;
-select -r pCylinder2 ;
-select -tgl pCylinder1 ;
-duplicate -rr;
-move -r 0 2.568411 0 ;
-rotate -r -os -fo 0 0 93.745174 ;
-move -r 0 -0.68457 0 ;
-move -r 0.309238 0 0 ;
-select -cl  ;
-select -r pCylinder3 ;
-move -r -0.730819 0 0 ;
-move -r 0 0.230098 0 ;
-move -r 0.061419 0 0 ;
-select -cl  ;
-CreatePolygonSphere;
-polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
-move -r 0 5.736812 0 ;
-move -r 0 0 1.725574 ;
-scale -r 0.315961 0.315961 0.315961 ;
-move -r 0 0.274133 0 ;
-move -r 0 0 -0.18146 ;
-duplicate -rr;
-move -r 0 0 0.908019 ;
-move -r 0 -0.986582 0 ;
-move -r 0 0 -0.612044 ;
-duplicate -rr;
-move -r 0 -1.035723 0 ;
-move -r 0 0 -0.142158 ;
-select -cl  ;
 
+string $objects[]; // store all obj
 
+string $temp[]; // temp hold obj
+$temp = `polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1`;
+// $temp == ["psphere1", "polysphere1"]
+stringArrayInsertAtIndex(0, $objects, $temp[0]);
 
+$temp = `polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1`;
+// $temp == ["psphere1", "polysphere1"]
+stringArrayInsertAtIndex(0, $objects, $temp[0]);
+
+$temp = `duplicate -rr $temp[0]`;
+stringArrayInsertAtIndex(0, $objects, $temp[0]);
+
+// $objects == ["pSphere1", "pSphere2"]
+
+$temp = `duplicate -rr $objects`;
+
+$objects = stringArrayCatenate($objects, $temp);
+
+print ($objects);
+
+polyUnite //to combine
