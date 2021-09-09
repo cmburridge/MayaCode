@@ -1,24 +1,114 @@
+select -all;
+delete;
 
 string $objects[]; // store all obj
 
 string $temp[]; // temp hold obj
-$temp = `polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1`;
-// $temp == ["psphere1", "polysphere1"]
+$temp = `polySphere -n sphereBase -r 2 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1`;
+
 stringArrayInsertAtIndex(0, $objects, $temp[0]);
 
-$temp = `polySphere -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1`;
-// $temp == ["psphere1", "polysphere1"]
+$temp = `polySphere -n sphereMiddle -r 1.5 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1`;
+move -r 0 2.312678 0 ;
+
 stringArrayInsertAtIndex(0, $objects, $temp[0]);
 
-$temp = `duplicate -rr $temp[0]`;
+$temp = `polySphere -n sphereTop -r 1 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1`;
+move -r 0 4.012678 0 ;
+
 stringArrayInsertAtIndex(0, $objects, $temp[0]);
 
-// $objects == ["pSphere1", "pSphere2"]
+$temp = `polySphere -n hat -r 1.5 -sx 5 -sy 5 -ax 0 1 0 -cuv 2 -ch 1`;
+move -r 0 4.012678 0;
 
-$temp = `duplicate -rr $objects`;
+stringArrayInsertAtIndex(0, $objects, $temp[0]);
+
+$temp = `duplicate -rr hat`;
+stringArrayInsertAtIndex(0, $objects, $temp[0]);
+
+select $temp;
+move -r 0 1.012678 0 ;
+scale -r 1 0.330087 1 ;
+move -r 0 -0.314813 0 ;
+
+select hat;
+move -r 0 2.1581 0 ;
+scale -r 1 0.584096 1 ;
+scale -r 0.843345 0.843345 0.843345 ;
+move -r 0 -0.963393 0 ;
+move -r 0 -0.0882768 0 ;
+
+$temp = `polyCylinder -n stickArm -sx 5 -sy 5 -sz 5`;
+stringArrayInsertAtIndex(0, $objects, $temp[0]);
+
+move -r 0 2.850515 0 ;
+move -r 0 0 2.049312 ;
+scale -r 0.406181 0.406181 0.406181 ;
+move -r 0 1.496094 0 ;
+scale -r 1 3.185605 1 ;
+rotate -r -os -fo 48.481534 0 0 ;
+move -r 0 -0.701714 0 ;
+scale -r 0.649889 0.649889 0.649889 ;
+scale -r 1 1.560384 1 ;
+
+$temp = `duplicate -rr $temp`;
+stringArrayInsertAtIndex(0, $objects, $temp[0]);
+
+move -r 0 0 -3.883872 ;
+rotate -r -os -fo -88.793874 0 0 ;
+
+$temp = `polySphere -n eye -r .3 -sx 10 -sy 10 -ax 0 1 0 -cuv 2 -ch 1`;
+stringArrayInsertAtIndex(0, $objects, $temp[0]);
+
+move -r -1.948889 0 0 ;
+move -r 0 4.107638 0 ;
+move -r 1.341508 0 0 ;
+move -r 0 0 0.353003 ;
+move -r 0 0.0680044 0 ;
+move -r -0.106432 0 0 ;
+polyMirrorFace -direction 4;
+
+$temp = `polySphere -n coalButton -r .3 -sx 10 -sy 10 -ax 0 1 0 -cuv 2 -ch 1`;
+stringArrayInsertAtIndex(0, $objects, $temp[0]);
+
+move -r -1.681636 0 0 ;
+move -r 0 2.56744 0 ;
+move -r 0.33406 0 0 ;
+move -r 0 -0.0516481 0 ;
+move -r 0 0.0513801 0 ;
+move -r 0 0.566676 0 ;
+move -r 0.208882 0 0 ;
+rotate -r -os -fo 0 0 -32.608187 ;
+
+$temp = `duplicate -rr $temp`;
+stringArrayInsertAtIndex(0, $objects, $temp[0]);
+
+move -r 0 -1.052657 0 ;
+move -r -0.147184 0 0 ;
+rotate -r -os -fo 0 0 52.070091 ;
+move -r 0.019274 0 0 ;
+move -r 0 0.173289 0 ;
+move -r -0.0847635 0 0 ;
+
+$temp = `polySphere -n carrotNose -r .3 -sx 10 -sy 10 -ax 0 1 0 -cuv 2 -ch 1`;
+stringArrayInsertAtIndex(0, $objects, $temp[0]);
+
+move -r 0 3.873999 0 ;
+move -r -0.910951 0 0 ;
+rotate -r -os -fo 0 0 96.335618 ;
+scale -r 1 2.665307 1 ;
+scale -r 0.614486 0.614486 0.614486 ;
+scale -r 1 1.575267 1 ;
+move -r 0 0.0687608 0 ;
 
 $objects = stringArrayCatenate($objects, $temp);
 
 print ($objects);
 
-polyUnite //to combine
+select -all;
+polyUnite;
+
+group -n Snowman $objects;
+
+delete -constructionHistory;
+
