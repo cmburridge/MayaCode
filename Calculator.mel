@@ -1,0 +1,79 @@
+Add({1,2,5});
+Subtract({1,2,5});
+Multiply({1,2,5});
+Divide({1,2,5});
+PowerOf(2,4);
+Mean($numbers);
+//Median({1,2,5,8,7});
+//Mode({2,3,4,5});
+float $numbers[] = {1.0,2,3,3,5};
+
+//global proc float Median(float $numbers[])
+{
+    //float $i = size($numbers);
+    //sort($numbers);
+    //float $sum =0;
+    //if($i%2 == 0)
+    //{
+     // $sum = $i / 2;
+     // return $numbers[$sum];    
+    //} 
+}
+
+global proc float Mean(float $numbers[])
+{
+    float $i = size($numbers);
+    float $sum = 0;
+    for ($num=0;$num<=$i;$num++)
+    $sum = $sum+$numbers[$num];
+    $sum = $sum / $i;
+    return $sum;
+}
+
+global proc float Add(float $numbers[])
+{   
+    float $sum = $numbers[0];
+    for ($num=1;$num<size($numbers);$num++)
+    $sum = $sum+=$numbers[$num];
+    return $sum;
+}
+
+global proc float Subtract(float $numbers[])
+{   
+    float $sum = $numbers[0];
+    for ($num=1;$num<size($numbers);$num++)
+    $sum = $sum-=$numbers[$num];
+    return $sum;
+}
+
+global proc float Multiply(float $numbers[])
+{
+    float $sum = $numbers[0];
+    for ($num=1;$num<size($numbers);$num++)
+    $sum = $sum*=$numbers[$num];
+    return $sum;
+}
+
+global proc float Divide(float $numbers[])
+{
+    float $sum = $numbers[0];
+    for ($num=1;$num<size($numbers);$num++)
+    $sum = $sum/=$numbers[$num];
+    return $sum;
+}
+
+global proc float PowerOf(float $num1, float $num2)
+{
+    float $sum = 0; 
+    $sum = pow ($num1, $num2);
+    return $sum;
+}
+
+//global proc float Mode()
+{
+    
+}
+
+
+
+
