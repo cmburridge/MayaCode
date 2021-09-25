@@ -1,7 +1,26 @@
+<<<<<<< Updated upstream
 select -all;
 delete;
 
 string $objects[]; // store all obj
+=======
+delete -constructionHistory;
+
+select -all;
+delete;
+
+string $objects[];
+
+string $temp[];
+
+$temp = `polySphere -n sphereBase -r 5 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1`;
+
+$temp = `polySphere -n sphereMiddle -r 3.5 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1`; 
+move -r 0 6.38909 0;
+
+polySphere -n sphereMiddle -r 2.5 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1; 
+move -r 0 10.985909 0;
+>>>>>>> Stashed changes
 
 string $temp[]; // temp hold obj
 $temp = `polySphere -n sphereBase -r 2 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1`;
