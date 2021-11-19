@@ -1,11 +1,9 @@
 import maya.cmds as cmds
 
+def nodeColor(newColor):
+    selection = cmds.ls(sl=True)
 
-def renameFunc(string):
-    listObj = cmds.ls(sl=True)
-    for count in enumerate(listObj):
-        string.replace(string.partition("_"), str(count + 1).zfill)
-    return listObj
+    cmds.setAttr(selection[0] + ".overrideEnabled", 1)
+    cmds.setAttr(selection[0] + ".overrideColor", newColor)
 
-
-renameFunc("Leg_##_Jnt")
+    nodeColor(17)
